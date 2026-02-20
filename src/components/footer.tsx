@@ -28,6 +28,12 @@ const socials = [
   { label: "Instagram", href: "#", icon: Instagram },
 ];
 
+/** Figma: text-Text-alternate, text-2xl, font-normal, font-Benzin, leading-8 */
+const sectionTitleClass =
+  "font-heading text-2xl font-normal leading-8 text-white";
+/** Figma: text-Background-color-primary, text-xl, font-normal, font-Helvetica, leading-8 */
+const bodyClass = "font-sans text-xl font-normal leading-8 text-white/90";
+
 export function Footer() {
   return (
     <footer className="relative w-full overflow-hidden">
@@ -45,9 +51,9 @@ export function Footer() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          {/* Column 1: Brand + CTA */}
-          <div className="lg:col-span-5">
+        <div className="flex flex-col gap-10">
+          {/* Brand above all content */}
+          <div>
             <Link
               href="/"
               className="font-heading inline-flex items-center gap-1 text-2xl font-normal text-white md:text-3xl"
@@ -58,85 +64,84 @@ export function Footer() {
                 aria-hidden
               />
             </Link>
-            <h2 className="font-heading mt-6 text-2xl font-normal leading-tight text-white md:text-3xl">
-              {COMPANY_HEADING}
-            </h2>
-            <p className="mt-4 max-w-lg text-base leading-relaxed text-white/90 md:text-lg">
-              {COMPANY_DESCRIPTION}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button
-                asChild
-                className="rounded-md bg-black px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white hover:bg-black/90"
-              >
-                <Link href="#contact">Contact us</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-md border border-white bg-transparent px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white hover:bg-white/10 hover:text-white"
-              >
-                <Link href="#electrical-services">Learn more</Link>
-              </Button>
-            </div>
           </div>
 
-          {/* Column 2: Services */}
-          <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
-              Services
-            </h3>
-            <ul className="mt-4 flex flex-col gap-3">
-              {servicesLinks.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="text-base text-white/90 transition-colors hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Quicklinks */}
-          <div className="lg:col-span-2">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
-              Quicklinks
-            </h3>
-            <ul className="mt-4 flex flex-col gap-3">
-              {quickLinks.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    className="text-base text-white/90 transition-colors hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Socials */}
-          <div className="lg:col-span-3">
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white">
-              Socials
-            </h3>
-            <div className="mt-4 flex gap-3">
-              {socials.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex size-10 items-center justify-center rounded-full border border-white/80 text-white transition-colors hover:bg-white/10 hover:border-white"
-                  aria-label={item.label}
+          {/* Two major blocks: left (tagline + description + buttons), right (sections + items) */}
+          <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-x-10">
+            {/* Left: tagline, description, CTAs — space above maintained by gap from brand */}
+            <div className="lg:col-span-5">
+              <h2 className={sectionTitleClass}>{COMPANY_HEADING}</h2>
+              <p className={`mt-8 max-w-lg ${bodyClass}`}>
+                {COMPANY_DESCRIPTION}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Button
+                  asChild
+                  className="rounded-md bg-black px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white hover:bg-black/90"
                 >
-                  <item.icon className="size-5" aria-hidden />
-                </a>
-              ))}
+                  <Link href="#contact">Contact us</Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-md border border-white bg-transparent px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white hover:bg-white/10 hover:text-white"
+                >
+                  <Link href="#electrical-services">Learn more</Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Right: menu sections with titles and items — tighter spacing under titles */}
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:col-span-7">
+              <div>
+                <h3 className={`${sectionTitleClass} uppercase`}>Services</h3>
+                <ul className="mt-8 flex flex-col gap-1.5">
+                  {servicesLinks.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        className={`${bodyClass} transition-colors hover:text-white`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className={`${sectionTitleClass} uppercase`}>
+                  Quicklinks
+                </h3>
+                <ul className="mt-8 flex flex-col gap-1.5">
+                  {quickLinks.map((item) => (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        className={`${bodyClass} transition-colors hover:text-white`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className={`${sectionTitleClass} uppercase`}>Socials</h3>
+                <div className="mt-8 flex gap-3">
+                  {socials.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex size-10 items-center justify-center rounded-full border border-white/80 text-white transition-colors hover:border-white hover:bg-white/10"
+                      aria-label={item.label}
+                    >
+                      <item.icon className="size-5" aria-hidden />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

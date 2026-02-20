@@ -1,18 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { Leaf, Zap } from "lucide-react";
+import { FaLeaf, FaBolt } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 
 const benefits = [
   {
-    icon: Leaf,
+    icon: FaLeaf,
     title: "Sustainability",
     description:
       "We prioritize sustainable solutions that contribute to a greener future.",
   },
   {
-    icon: Zap,
+    icon: FaBolt,
     title: "Energy Savings",
     description:
       "Our services are designed to help you save energy and reduce your carbon footprint.",
@@ -63,8 +63,21 @@ function ChevronLayer() {
 
 export function BenefitsSection() {
   return (
-    <section className="w-full bg-background py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative w-full min-h-[32rem] overflow-hidden py-16 md:min-h-[36rem] md:py-24">
+      
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        <Image
+          src="/benefits-bg.png"
+          alt="Benefits background"
+          fill
+          className="object-cover opacity-8"
+          sizes="100vw"
+          aria-hidden
+          priority={false}
+        />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Two-column layout: image left, content right */}
         <div className="grid grid-cols-1 gap-0 lg:grid-cols-12 lg:gap-8">
           {/* Left column - Layered chevrons behind upper-left of image (Figma: 575×668, radius 6) */}
@@ -127,7 +140,7 @@ export function BenefitsSection() {
         </div>
 
         {/* Partner logos strip: text-Dark, text-2xl, font-light, font-Helvetica, leading-8 */}
-        <div className="mt-16 border-t border-border pt-12 md:mt-20">
+        <div className="mt-16 border-t border-brand-teal pt-12 md:mt-20">
           <p className="mb-8 text-center text-2xl font-light leading-8 text-foreground">
             Trusted by industry leaders for exceptional electrical services
           </p>

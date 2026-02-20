@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Plug, BatteryCharging, Leaf } from "lucide-react";
+import { FaPlug, FaChargingStation, FaLeaf } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
 const SECTION_HEADING = "Discover Our Electrical Services Today";
@@ -14,17 +14,17 @@ const CARD_DESCRIPTION =
 
 const services = [
   {
-    icon: Plug,
+    icon: FaPlug,
     title: "Discover Our Range of Electrical Services",
     href: "#electrical-services",
   },
   {
-    icon: BatteryCharging,
+    icon: FaChargingStation,
     title: "EV Charger Installation Services",
     href: "#ev-chargers",
   },
   {
-    icon: Leaf,
+    icon: FaLeaf,
     title: "Energy-Efficient LED Lighting Solution",
     href: "#led-lighting",
   },
@@ -66,8 +66,8 @@ export function ElectricalServicesSection() {
               key={item.title}
               className="flex flex-col rounded-xl bg-[#2D3748]/75 backdrop-blur-sm p-6 shadow-lg md:p-8"
             >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center text-white">
-                <item.icon className="h-8 w-8" aria-hidden />
+              <div className="mb-4 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/20 text-white">
+                <item.icon className="h-6 w-6" aria-hidden />
               </div>
               <h3 className="font-heading text-xl font-normal leading-snug text-white md:text-2xl">
                 {item.title}

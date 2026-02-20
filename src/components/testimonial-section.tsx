@@ -100,7 +100,7 @@ export function TestimonialSection() {
                     {current.quote}
                   </p>
                 </blockquote>
-                <p className="mt-6 text-base font-normal text-muted-foreground md:text-lg">
+                <p className="mt-6 text-base font-normal text-foreground/70 md:text-lg">
                   {current.author} | {current.title}
                 </p>
                 <p className="mt-3 text-sm font-semibold tracking-tight text-foreground/80">
