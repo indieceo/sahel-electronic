@@ -7,25 +7,32 @@ import { cn } from "@/lib/utils";
 const benefits = [
   {
     icon: FaLeaf,
-    title: "Sustainability",
+    title: "Durabilité",
     description:
-      "We prioritize sustainable solutions that contribute to a greener future.",
+      "Nous privilégions les solutions durables qui contribuent à un avenir plus vert.",
   },
   {
     icon: FaBolt,
-    title: "Energy Savings",
+    title: "Économies d'énergie",
     description:
-      "Our services are designed to help you save energy and reduce your carbon footprint.",
+      "Nos services sont conçus pour vous aider à économiser l'énergie et à réduire votre empreinte carbone.",
   },
 ];
 
-const partnerLogos = [
-  { name: "Logoipsum", id: 1 },
-  { name: "Partner", id: 2 },
-  { name: "Webflow", id: 3 },
-  { name: "Relume", id: 4 },
-  { name: "Partner", id: 5 },
-  { name: "Logoipsum", id: 6 },
+/**
+ * Partenaires : changez le nom et le chemin du logo pour chaque partenaire.
+ * Logos dans /public/partners/ (ex: plan-international.png).
+ */
+const PARTNERS = [
+  { name: "Plan International", logo: "/partners/plan-international.png" },
+  { name: "Programme Alimentaire Mondial", logo: "/partners/wfp.png" },
+  { name: "Acted", logo: "/partners/acted.png" },
+  { name: "GIZ", logo: "/partners/giz.png" },
+  { name: "Enabel", logo: "/partners/enabel.png" },
+  { name: "BOAD", logo: "/partners/boad.png" },
+  { name: "Médecins Sans Frontières", logo: "/partners/msf.png" },
+  { name: "Banque Atlantique", logo: "/partners/banque-atlantique.png" },
+  { name: "Capital Finance", logo: "/partners/capital-finance.png" },
 ];
 
 const CHEVRON_PATH =
@@ -68,7 +75,7 @@ export function BenefitsSection() {
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
         <Image
           src="/benefits-bg.png"
-          alt="Benefits background"
+          alt="Arrière-plan avantages"
           fill
           className="object-cover opacity-8"
           sizes="100vw"
@@ -89,7 +96,7 @@ export function BenefitsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-teal/30 via-transparent to-transparent lg:from-brand-teal/25" />
                 <Image
                   src="/benefits-img.png"
-                  alt="Electrician at work on electrical outlets"
+                  alt="Électricien au travail sur des prises électriques"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 575px"
@@ -102,18 +109,18 @@ export function BenefitsSection() {
           {/* Right column - Content (Figma: Benzin headings, Helvetica body) */}
           <div className="order-1 flex flex-col justify-center lg:order-2 lg:col-span-6 lg:col-start-7 lg:pl-4">
             <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand-teal">
-              Our Benefits
+              Nos avantages
             </p>
             {/* text-Dark, text-5xl, font-normal, font-Benzin, leading-[67.20px] */}
             <h2 className="font-heading mb-4 text-5xl font-normal leading-[67.2px] text-foreground">
-              Discover the Many Benefits of Company Electrical Services.
+              Découvrez les nombreux avantages de nos services électriques.
               <span className="ml-1 inline-block h-2 w-2 rounded-sm bg-brand-teal align-middle" aria-hidden />
             </h2>
             {/* text-Dark, text-xl, font-normal, font-Helvetica, leading-8 */}
             <p className="mb-8 text-xl font-normal leading-8 text-foreground">
-              At Company, we offer a range of services that not only meet your
-              electrical needs but also provide numerous benefits. From energy
-              savings to advanced technology, we have you covered.
+              Nous proposons une gamme de services qui répondent à vos besoins
+              électriques tout en offrant de nombreux avantages. Des économies
+              d'énergie aux technologies avancées, nous sommes à vos côtés.
             </p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               {benefits.map((item) => (
@@ -139,22 +146,35 @@ export function BenefitsSection() {
           </div>
         </div>
 
-        {/* Partner logos strip: text-Dark, text-2xl, font-light, font-Helvetica, leading-8 */}
+        {/* Partenaires – bandeau défilant (marquee) */}
         <div className="mt-16 border-t border-brand-teal pt-12 md:mt-20">
           <p className="mb-8 text-center text-2xl font-light leading-8 text-foreground">
-            Trusted by industry leaders for exceptional electrical services
+            Reconnus et soutenus par des acteurs majeurs du développement
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {partnerLogos.map((logo) => (
-              <div
-                key={logo.id}
-                className="flex h-8 items-center text-muted-foreground/70 transition-colors hover:text-muted-foreground"
-              >
-                <span className="text-lg font-semibold tracking-tight">
-                  {logo.name}
-                </span>
-              </div>
-            ))}
+          <div className="relative w-full overflow-hidden">
+            <div
+              className="flex w-max animate-marquee gap-12 pr-12"
+              style={{ animationDuration: `${PARTNERS.length * 3}s` }}
+              aria-hidden
+            >
+              {/* Duplicate list for seamless loop */}
+              {[...PARTNERS, ...PARTNERS].map((partner, index) => (
+                <div
+                  key={`${partner.name}-${index}`}
+                  className="flex flex-shrink-0 items-center gap-4"
+                >
+                  <div className="relative h-12 w-28">
+                    <Image
+                      src={partner.logo}
+                      alt=""
+                      fill
+                      className="object-contain object-center"
+                      sizes="112px"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
