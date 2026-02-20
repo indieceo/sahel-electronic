@@ -2,35 +2,78 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import {
+  Menu,
+  MapPin,
+  Mail,
+  ArrowUpRight,
+} from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
-
-const BANNER_TEXT =
-  "Ready for an upgrade? Get a FREE estimate! Just give us a call and save up to 10% on your first installation.";
+import { site } from "@/lib/site";
 
 const HERO_HEADLINE =
-  "Empowering Communities Through Innovative Electrical Solutions";
+  "Révolutionner la mécanisation agricole en Afrique par l'énergie solaire";
 
 const HERO_DESCRIPTION =
-  "At Company, we are dedicated to providing community-focused electrical solutions that make a difference. From EV chargers to new panels, LED lighting to heat pump water heaters, we have the expertise to meet your needs.";
+  "Sahel Électronique est une entreprise nigérienne qui aide les petits producteurs ruraux du Sahel à transformer localement leurs produits agricoles grâce à des moulins solaires multifonctions, recyclables en fin de vie.";
+
+
 
 export function HeroSection() {
   return (
     <header className="relative w-full">
-      {/* Top yellow banner – full width, centered text (Figma) */}
+      {/* Top bar – address, contact, social */}
       <div
-        className="w-full py-3 text-center text-sm font-normal text-black md:py-3.5 md:text-base"
+        className="w-full py-3 text-sm font-normal text-black md:py-3.5 md:text-base"
         style={{ backgroundColor: "#FDCB01" }}
       >
-        <p className="mx-auto max-w-4xl px-4">{BANNER_TEXT}</p>
+        <div className="mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-8 md:justify-between md:gap-x-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-6">
+            
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <MapPin className="size-4 shrink-0" aria-hidden />
+              <span className="truncate">{site.address}</span>
+            </a>
+
+            
+          </div>
+          <div className="flex items-center gap-3">
+          <a
+              href={`mailto:${site.mail}`}
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <Mail className="size-4 shrink-0" aria-hidden />
+              <span>{site.mail}</span>
+            </a>
+
+          <a
+              href={`https://wa.me/${site.whatsapp.replace(/\s/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <FaWhatsapp className="size-4 shrink-0" aria-hidden />
+              <span>{site.whatsapp}</span>
+            </a>
+            
+            
+            
+          </div>
+        </div>
       </div>
 
       {/* Hero area: nav + background image + overlay + content */}
-      <div className="relative min-h-[85vh] w-full overflow-hidden md:min-h-[90vh]">
+      <div className="relative min-h-[92vh] w-full overflow-hidden md:min-h-[95vh]">
         {/* Background image – aerial solar panels on building */}
         <Image
           src="https://images.unsplash.com/photo-1589201529153-5297335c1684?q=80&w=2232&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Aerial view of building with solar panels"
+          alt="Vue aérienne de bâtiment avec panneaux solaires"
           fill
           className="object-cover"
           sizes="100vw"
@@ -48,24 +91,27 @@ export function HeroSection() {
             href="/"
             className="font-heading flex items-center gap-1 text-2xl font-normal text-white md:text-3xl"
           >
-            Solutions.
+            {site.name}
             <span
               className="inline-block h-2 w-2 rounded-full bg-[#01CDA0]"
               aria-hidden
             />
           </Link>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <Button
               asChild
-              className="rounded-md border border-white bg-black px-4 py-2 text-sm font-medium uppercase text-white hover:bg-black/90 md:px-5 md:py-2.5"
+              className="rounded-full bg-teal-900 px-4 py-2 text-sm font-semibold uppercase text-white hover:bg-teal-600 md:px-5 md:py-2.5"
             >
-              <Link href="#estimate">Get free estimate</Link>
+              <Link href="#estimate" className="flex items-center gap-2">
+                Obtenir un devis
+                <ArrowUpRight className="size-5 shrink-0" aria-hidden />
+              </Link>
             </Button>
             <Button
               variant="outline"
-              className="rounded-md border border-black bg-white px-4 py-2 text-sm font-medium uppercase text-black hover:bg-white/90 md:px-5 md:py-2.5"
+              className="rounded-full bg-transparent px-4 py-2.5 text-sm font-semibold uppercase text-white transition-colors md:px-5"
             >
-              <Menu className="mr-1.5 size-5" aria-hidden />
+              <Menu className="size-5 shrink-0" aria-hidden />
               Menu
             </Button>
           </div>

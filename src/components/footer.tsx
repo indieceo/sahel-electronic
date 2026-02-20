@@ -2,30 +2,33 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Linkedin, Instagram } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Facebook, Linkedin, Instagram, MapPin, Mail } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
+import { site } from "@/lib/site";
 
-const COMPANY_HEADING = "Discover more of our Electrical Services";
+const COMPANY_HEADING = "Transformation agricole au dernier kilomètre";
 const COMPANY_DESCRIPTION =
-  "At Elexo, we are dedicated to providing community-focused electrical solutions that make a difference. From EV chargers to new panels, LED lighting to heat pump water heaters, we have the expertise to meet your needs.";
+  "Sahel Électronique aide les petits producteurs ruraux du Sahel à transformer localement leurs produits agricoles grâce à des moulins solaires multifonctions, recyclables en fin de vie. Transport, installation, formation, maintenance et assistance crédit.";
 
 const servicesLinks = [
-  { label: "Electrical Services", href: "#electrical-services" },
-  { label: "EV Charger Installation Services", href: "#ev-chargers" },
-  { label: "Energy-Efficient LED Lighting Solution", href: "#led-lighting" },
+  { label: "Transport", href: "#services" },
+  { label: "Installation", href: "#services" },
+  { label: "Formation", href: "#services" },
+  { label: "Maintenance", href: "#services" },
+  { label: "Assistance crédit", href: "#services" },
 ];
 
 const quickLinks = [
-  { label: "Home", href: "/" },
-  { label: "About Us", href: "/#about" },
-  { label: "Services", href: "/#electrical-services" },
-  { label: "Contact Us", href: "/#contact" },
+  { label: "Accueil", href: "/" },
+  { label: "À propos", href: "/#about" },
+  { label: "Services", href: "/#services" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const socials = [
-  { label: "Facebook", href: "#", icon: Facebook },
-  { label: "LinkedIn", href: "#", icon: Linkedin },
-  { label: "Instagram", href: "#", icon: Instagram },
+  { label: "Facebook", href: site.social.facebook, icon: Facebook },
+  { label: "LinkedIn", href: site.social.linkedin, icon: Linkedin },
+  { label: "Instagram", href: site.social.instagram, icon: Instagram },
 ];
 
 /** Figma: text-Text-alternate, text-2xl, font-normal, font-Benzin, leading-8 */
@@ -58,7 +61,7 @@ export function Footer() {
               href="/"
               className="font-heading inline-flex items-center gap-1 text-2xl font-normal text-white md:text-3xl"
             >
-              Solutions
+              {site.name}
               <span
                 className="inline-block h-2 w-2 rounded-sm bg-brand-teal"
                 aria-hidden
@@ -74,27 +77,12 @@ export function Footer() {
               <p className={`mt-8 max-w-lg ${bodyClass}`}>
                 {COMPANY_DESCRIPTION}
               </p>
-              <div className="mt-6 flex flex-wrap gap-3">
-                <Button
-                  asChild
-                  className="rounded-md bg-black px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white hover:bg-black/90"
-                >
-                  <Link href="#contact">Contact us</Link>
-                </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-md border border-white bg-transparent px-5 py-2.5 text-sm font-medium uppercase tracking-wide text-white hover:bg-white/10 hover:text-white"
-                >
-                  <Link href="#electrical-services">Learn more</Link>
-                </Button>
-              </div>
             </div>
 
             {/* Right: menu sections with titles and items — tighter spacing under titles */}
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:col-span-7">
               <div>
-                <h3 className={`${sectionTitleClass} uppercase`}>Services</h3>
+                <h3 className={`${sectionTitleClass} uppercase`}>Nos services</h3>
                 <ul className="mt-8 flex flex-col gap-1.5">
                   {servicesLinks.map((item) => (
                     <li key={item.label}>
@@ -110,7 +98,7 @@ export function Footer() {
               </div>
               <div>
                 <h3 className={`${sectionTitleClass} uppercase`}>
-                  Quicklinks
+                  Liens rapides
                 </h3>
                 <ul className="mt-8 flex flex-col gap-1.5">
                   {quickLinks.map((item) => (
@@ -126,7 +114,7 @@ export function Footer() {
                 </ul>
               </div>
               <div>
-                <h3 className={`${sectionTitleClass} uppercase`}>Socials</h3>
+                <h3 className={`${sectionTitleClass} uppercase`}>Réseaux sociaux</h3>
                 <div className="mt-8 flex gap-3">
                   {socials.map((item) => (
                     <a
@@ -143,6 +131,41 @@ export function Footer() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar – address, mail, WhatsApp (like hero yellow bar) */}
+      <div className="relative z-10 w-full bg-black/40 py-3 text-sm font-normal text-white md:py-3.5 md:text-base">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 md:justify-between md:gap-x-8 md:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-6">
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <MapPin className="size-4 shrink-0" aria-hidden />
+              <span className="truncate">{site.address}</span>
+            </a>
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href={`mailto:${site.mail}`}
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <Mail className="size-4 shrink-0" aria-hidden />
+              <span>{site.mail}</span>
+            </a>
+            <a
+              href={`https://wa.me/${site.whatsapp.replace(/\s/g, "")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:underline"
+            >
+              <FaWhatsapp className="size-4 shrink-0" aria-hidden />
+              <span>{site.whatsapp}</span>
+            </a>
           </div>
         </div>
       </div>

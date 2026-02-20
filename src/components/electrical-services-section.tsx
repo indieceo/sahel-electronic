@@ -2,37 +2,63 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FaPlug, FaChargingStation, FaLeaf } from "react-icons/fa";
+import {
+  FaTruck,
+  FaWrench,
+  FaChalkboardTeacher,
+  FaCog,
+  FaHandHoldingUsd,
+} from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
-const SECTION_HEADING = "Discover Our Electrical Services Today";
+const SECTION_HEADING = "Nos services";
 const SECTION_SUBTITLE =
-  "Experience top-quality electrical solutions for your needs";
-
-const CARD_DESCRIPTION =
-  "From EV charger installation to LED lighting solutions and Heat Pump Water Heater installation";
+  "De la livraison à la formation et au financement, nous vous accompagnons à chaque étape pour une transformation agricole durable au dernier kilomètre.";
 
 const services = [
   {
-    icon: FaPlug,
-    title: "Discover Our Range of Electrical Services",
-    href: "#electrical-services",
+    icon: FaTruck,
+    title: "Transport",
+    description:
+      "Livraison des moulins solaires sur le site des bénéficiaires, partout au Niger et dans la région du Sahel. Nous assurons un acheminement sécurisé et adapté à vos besoins.",
+    href: "#services",
   },
   {
-    icon: FaChargingStation,
-    title: "EV Charger Installation Services",
-    href: "#ev-chargers",
+    icon: FaWrench,
+    title: "Installation",
+    description:
+      "Mise en place et mise en service des moulins multifonctions sur site. Nos équipes garantissent une installation conforme et opérationnelle.",
+    href: "#services",
   },
   {
-    icon: FaLeaf,
-    title: "Energy-Efficient LED Lighting Solution",
-    href: "#led-lighting",
+    icon: FaChalkboardTeacher,
+    title: "Formation",
+    description:
+      "Formation des bénéficiaires à l'utilisation et à l'entretien des moulins après installation, pour une autonomie durable des producteurs.",
+    href: "#services",
+  },
+  {
+    icon: FaCog,
+    title: "Maintenance",
+    description:
+      "Suivi technique et maintenance des équipements pour assurer leur bon fonctionnement et prolonger leur durée de vie.",
+    href: "#services",
+  },
+  {
+    icon: FaHandHoldingUsd,
+    title: "Assistance crédit",
+    description:
+      "Accompagnement pour l'acquisition des moulins via des solutions de financement adaptées aux petits producteurs ruraux.",
+    href: "#services",
   },
 ];
 
 export function ElectricalServicesSection() {
   return (
-    <section className="relative w-full overflow-hidden py-16 md:py-24">
+    <section
+      id="services"
+      className="relative w-full overflow-hidden py-16 md:py-24"
+    >
       {/* Background image – aerial solar / industrial */}
       <Image
         src="/services-bg.png"
@@ -73,17 +99,8 @@ export function ElectricalServicesSection() {
                 {item.title}
               </h3>
               <p className="mt-3 flex-1 text-base leading-relaxed text-[#CBD5E0]">
-                {CARD_DESCRIPTION}
+                {item.description}
               </p>
-              <div className="mt-6">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-lg border border-white bg-transparent px-4 py-2 text-sm font-medium uppercase tracking-wide text-white hover:bg-white/10 hover:text-white"
-                >
-                  <Link href={item.href}>Learn more</Link>
-                </Button>
-              </div>
             </article>
           ))}
         </div>

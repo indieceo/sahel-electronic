@@ -8,24 +8,24 @@ import { cn } from "@/lib/utils";
 const testimonials = [
   {
     quote:
-      "Company's services have been a game-changer for our company. Their expertise in electrification measures has helped us save on energy costs and reduce our environmental impact.",
-    author: "John Doe",
-    title: "System Engineer",
-    logo: "Webflow",
+      "Avec le moulin solaire de Sahel Électronique, on transforme notre mil et notre niébé sur place. Plus besoin d’aller en ville. La formation qu’ils ont donnée nous permet de tout faire nous-mêmes.",
+    author: "Ibrahim Moussa",
+    title: "Producteur",
+    logo: "Coopérative de Tillabéri",
   },
   {
     quote:
-      "Professional installation and clear communication from start to finish. Our solar array and EV chargers are performing beyond expectations.",
-    author: "Sarah Chen",
-    title: "Operations Director",
-    logo: "Relume",
+      "Le transport jusqu’à notre village, l’installation et l’assistance crédit ont tout rendu possible. Notre groupement produit maintenant de la farine locale de qualité pour tout le canton.",
+    author: "Aïssata Oumarou",
+    title: "Présidente du groupement",
+    logo: "Dosso",
   },
   {
     quote:
-      "We switched to their LED lighting and heat pump solutions. The ROI was visible within the first year. Highly recommend for any business.",
-    author: "Marcus Williams",
-    title: "Facilities Manager",
-    logo: "Logoipsum",
+      "Un partenaire sérieux et proche du terrain. La maintenance est assurée et les équipements sont recyclables. C’est exactement ce dont les producteurs du Sahel ont besoin.",
+    author: "Boukary Idrissa",
+    title: "Partenaire technique",
+    logo: "Niamey",
   },
 ];
 
@@ -46,13 +46,13 @@ export function TestimonialSection() {
       {/* Faded background: light image + subtle grid (solar-panel feel) */}
       <div className="absolute inset-0 bg-muted/40" aria-hidden />
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.012]"
         style={{
           backgroundImage: `
             linear-gradient(to right, currentColor 1px, transparent 1px),
             linear-gradient(to bottom, currentColor 1px, transparent 1px)
           `,
-          backgroundSize: "48px 48px",
+          backgroundSize: "12px 12px",
         }}
         aria-hidden
       />
@@ -72,7 +72,7 @@ export function TestimonialSection() {
         <div className="mx-auto w-full max-w-5xl px-4 md:px-8">
           {/* Section label – teal, uppercase, letter spacing */}
           <p className="mb-6 text-center text-sm font-semibold uppercase tracking-widest text-brand-teal">
-            Testimonials
+            Témoignages
           </p>
 
           {/* Quote + author + nav – fixed-height content block, chevrons centered with it */}
@@ -83,7 +83,7 @@ export function TestimonialSection() {
                 type="button"
                 onClick={goPrev}
                 className="flex shrink-0 items-center justify-center rounded-full border border-brand-teal/30 bg-foreground p-3 text-brand-teal transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:size-14 md:p-0"
-                aria-label="Previous testimonial"
+                aria-label="Témoignage précédent"
               >
                 <ChevronLeft className="size-6 md:size-7" aria-hidden />
               </button>
@@ -113,21 +113,21 @@ export function TestimonialSection() {
                 type="button"
                 onClick={goNext}
                 className="flex shrink-0 items-center justify-center rounded-full border border-brand-teal/30 bg-foreground p-3 text-brand-teal transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:size-14 md:p-0"
-                aria-label="Next testimonial"
+                aria-label="Témoignage suivant"
               >
                 <ChevronRight className="size-6 md:size-7" aria-hidden />
               </button>
             </div>
 
             {/* Dot indicators */}
-            <div className="mt-8 flex justify-center gap-2" role="tablist" aria-label="Testimonial index">
+            <div className="mt-8 flex justify-center gap-2" role="tablist" aria-label="Index des témoignages">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 role="tab"
                 aria-selected={i === currentIndex}
-                aria-label={`Testimonial ${i + 1}`}
+                aria-label={`Témoignage ${i + 1}`}
                 onClick={() => setCurrentIndex(i)}
                 className={cn(
                   "size-2 rounded-full transition-colors",

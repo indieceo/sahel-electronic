@@ -3,6 +3,12 @@
 import Image from "next/image";
 import { FaLeaf, FaBolt } from "react-icons/fa";
 import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const benefits = [
   {
@@ -151,31 +157,42 @@ export function BenefitsSection() {
           <p className="mb-8 text-center text-2xl font-light leading-8 text-foreground">
             Reconnus et soutenus par des acteurs majeurs du développement
           </p>
-          <div className="relative w-full overflow-hidden">
-            <div
-              className="flex w-max animate-marquee gap-12 pr-12"
-              style={{ animationDuration: `${PARTNERS.length * 3}s` }}
-              aria-hidden
-            >
-              {/* Duplicate list for seamless loop */}
-              {[...PARTNERS, ...PARTNERS].map((partner, index) => (
-                <div
-                  key={`${partner.name}-${index}`}
-                  className="flex flex-shrink-0 items-center gap-4"
-                >
-                  <div className="relative h-12 w-28">
-                    <Image
-                      src={partner.logo}
-                      alt=""
-                      fill
-                      className="object-contain object-center"
-                      sizes="112px"
-                    />
-                  </div>
-                </div>
-              ))}
+          <TooltipProvider>
+            <div className="relative w-full overflow-hidden">
+              <div
+                className="flex w-max animate-marquee gap-12 pr-12"
+                style={{ animationDuration: `${PARTNERS.length * 3}s` }}
+                aria-hidden
+              >
+                {/* Duplicate list for seamless loop */}
+                {[...PARTNERS, ...PARTNERS].map((partner, index) => (
+                  <Tooltip key={`${partner.name}-${index}`}>
+                    <TooltipTrigger asChild>
+                      <div
+                        className={cn(
+                          "flex flex-shrink-0 cursor-default items-center gap-4 transition-transform duration-200 ease-out",
+                          "hover:scale-105"
+                        )}
+                      >
+                        <div className="relative h-12 w-28">
+                          <Image
+                            src={partner.logo}
+                            alt=""
+                            fill
+                            className="object-contain object-center"
+                            sizes="112px"
+                          />
+                        </div>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" sideOffset={8}>
+                      {partner.name}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
             </div>
-          </div>
+          </TooltipProvider>
         </div>
       </div>
     </section>
