@@ -22,6 +22,7 @@ const quickLinks = [
   { label: "Accueil", href: "/" },
   { label: "À propos", href: "/#about" },
   { label: "Services", href: "/#services" },
+  { label: "Nos produits", href: "/#produits" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -35,7 +36,7 @@ const socials = [
 const sectionTitleClass =
   "font-heading text-2xl font-normal leading-8 text-white";
 /** Figma: text-Background-color-primary, text-xl, font-normal, font-Helvetica, leading-8 */
-const bodyClass = "font-sans text-xl font-normal leading-8 text-white/90";
+const bodyClass = "font-sans text-xl font-normal leading-8 text-white/95";
 
 export function Footer() {
   return (
@@ -50,7 +51,10 @@ export function Footer() {
           sizes="100vw"
           priority={false}
         />
-        <div className="absolute inset-0 bg-black/75" aria-hidden />
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-teal-950/85 via-teal-900/80 to-black/90"
+          aria-hidden
+        />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-20">
@@ -88,7 +92,7 @@ export function Footer() {
                     <li key={item.label}>
                       <Link
                         href={item.href}
-                        className={`${bodyClass} transition-colors hover:text-white`}
+                        className={`${bodyClass} relative inline-block transition-colors hover:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-teal after:transition-[width] after:duration-300 after:content-[''] hover:after:w-full`}
                       >
                         {item.label}
                       </Link>
@@ -105,7 +109,7 @@ export function Footer() {
                     <li key={item.label}>
                       <Link
                         href={item.href}
-                        className={`${bodyClass} transition-colors hover:text-white`}
+                        className={`${bodyClass} relative inline-block transition-colors hover:text-white after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-brand-teal after:transition-[width] after:duration-300 after:content-[''] hover:after:w-full`}
                       >
                         {item.label}
                       </Link>
@@ -136,7 +140,7 @@ export function Footer() {
       </div>
 
       {/* Bottom bar – address, mail, WhatsApp (like hero yellow bar) */}
-      <div className="relative z-10 w-full bg-black/40 py-3 text-sm font-normal text-white md:py-3.5 md:text-base">
+      <div className="relative z-10 w-full bg-teal-950/80 py-3 text-sm font-normal text-white md:py-3.5 md:text-base">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-2 px-4 md:justify-between md:gap-x-8 md:px-8">
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-6">
             <a

@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 const SECTION_HEADING = "Nos services";
 const SECTION_SUBTITLE =
   "De la livraison à la formation et au financement, nous vous accompagnons à chaque étape pour une transformation agricole durable au dernier kilomètre.";
+const SECTION_CTA = "Nous contacter";
 
 const services = [
   {
@@ -83,6 +84,14 @@ export function ElectricalServicesSection() {
           <p className="mt-3 text-lg font-normal text-white/90 md:text-xl">
             {SECTION_SUBTITLE}
           </p>
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="mt-6 border-white text-white hover:bg-white/20 hover:text-white"
+          >
+            <Link href="#contact">{SECTION_CTA}</Link>
+          </Button>
         </div>
 
         {/* Service cards – 3 columns */}

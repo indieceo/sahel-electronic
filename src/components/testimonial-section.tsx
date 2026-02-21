@@ -22,7 +22,7 @@ const testimonials = [
   },
   {
     quote:
-      "Un partenaire sérieux et proche du terrain. La maintenance est assurée et les équipements sont recyclables. C’est exactement ce dont les producteurs du Sahel ont besoin.",
+      "Un partenaire sérieux et proche du terrain. La maintenance est assurée et les équipements sont totalement recyclables. C’est exactement ce dont les producteurs du Sahel ont besoin.",
     author: "Boukary Idrissa",
     title: "Partenaire technique",
     logo: "Niamey",
@@ -82,7 +82,7 @@ export function TestimonialSection() {
               <button
                 type="button"
                 onClick={goPrev}
-                className="flex shrink-0 items-center justify-center rounded-full border border-brand-teal/30 bg-foreground p-3 text-brand-teal transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:size-14 md:p-0"
+                className="flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-brand-teal/30 bg-foreground p-3 text-brand-teal transition-[opacity,transform] duration-200 hover:scale-105 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:size-14 md:p-0"
                 aria-label="Témoignage précédent"
               >
                 <ChevronLeft className="size-6 md:size-7" aria-hidden />
@@ -112,7 +112,7 @@ export function TestimonialSection() {
               <button
                 type="button"
                 onClick={goNext}
-                className="flex shrink-0 items-center justify-center rounded-full border border-brand-teal/30 bg-foreground p-3 text-brand-teal transition-opacity hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:size-14 md:p-0"
+                className="flex shrink-0 cursor-pointer items-center justify-center rounded-full border border-brand-teal/30 bg-foreground p-3 text-brand-teal transition-[opacity,transform] duration-200 hover:scale-105 hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:size-14 md:p-0"
                 aria-label="Témoignage suivant"
               >
                 <ChevronRight className="size-6 md:size-7" aria-hidden />
@@ -130,7 +130,7 @@ export function TestimonialSection() {
                 aria-label={`Témoignage ${i + 1}`}
                 onClick={() => setCurrentIndex(i)}
                 className={cn(
-                  "size-2 rounded-full transition-colors",
+                  "size-2 cursor-pointer rounded-full transition-[color,transform] duration-200 hover:scale-125",
                   i === currentIndex ? "bg-brand-teal" : "bg-foreground/30 hover:bg-foreground/50",
                 )}
               />

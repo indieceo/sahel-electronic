@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FaLeaf, FaBolt } from "react-icons/fa";
+import { motion } from "motion/react";
+import { FaSolarPanel, FaLeaf } from "react-icons/fa";
 import { cn } from "@/lib/utils";
 import {
   Tooltip,
@@ -10,18 +11,31 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
+const easeOutExpo = [0.22, 1, 0.36, 1] as const;
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  view: { opacity: 1, y: 0 },
+  transition: { duration: 0.5, ease: easeOutExpo },
+};
+const fadeInLeft = {
+  initial: { opacity: 0, x: -24 },
+  view: { opacity: 1, x: 0 },
+  transition: { duration: 0.5, ease: easeOutExpo },
+};
+const viewport = { once: true, amount: 0.2 };
+
 const benefits = [
   {
-    icon: FaLeaf,
-    title: "Durabilité",
+    icon: FaSolarPanel,
+    title: "Énergie solaire & autonomie",
     description:
-      "Nous privilégions les solutions durables qui contribuent à un avenir plus vert.",
+      "Moulins et équipements solaires pour transformer vos récoltes sans réseau ni carburant, adaptés aux zones rurales du Sahel.",
   },
   {
-    icon: FaBolt,
-    title: "Économies d'énergie",
+    icon: FaLeaf,
+    title: "Transformation locale",
     description:
-      "Nos services sont conçus pour vous aider à économiser l'énergie et à réduire votre empreinte carbone.",
+      "Valorisation des productions sur place : nos moulins multifonctions permettent aux petits producteurs de créer de la valeur localement.",
   },
 ];
 
@@ -94,7 +108,13 @@ export function BenefitsSection() {
         {/* Two-column layout: image left, content right */}
         <div className="grid grid-cols-1 gap-0 lg:grid-cols-12 lg:gap-8">
           {/* Left column - Layered chevrons behind upper-left of image (Figma: 575×668, radius 6) */}
-          <div className="relative order-2 lg:order-1 lg:col-span-6 lg:col-start-1">
+          <motion.div
+            className="relative order-2 lg:order-1 lg:col-span-6 lg:col-start-1"
+            initial={fadeInLeft.initial}
+            whileInView={fadeInLeft.view}
+            viewport={viewport}
+            transition={fadeInLeft.transition}
+          >
             <div className="relative aspect-[575/668] w-full max-w-[575px]">
               {/* Figma: three parallel right-pointing chevrons, layered, behind upper-left of image */}
               <ChevronLayer />
@@ -102,7 +122,7 @@ export function BenefitsSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-teal/30 via-transparent to-transparent lg:from-brand-teal/25" />
                 <Image
                   src="/benefits-img.png"
-                  alt="Électricien au travail sur des prises électriques"
+                  alt="Équipement solaire ou transformation locale des produits agricoles au Sahel"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 575px"
@@ -110,27 +130,52 @@ export function BenefitsSection() {
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right column - Content (Figma: Benzin headings, Helvetica body) */}
-          <div className="order-1 flex flex-col justify-center lg:order-2 lg:col-span-6 lg:col-start-7 lg:pl-4">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand-teal">
-              Nos avantages
-            </p>
-            {/* text-Dark, text-5xl, font-normal, font-Benzin, leading-[67.20px] */}
-            <h2 className="font-heading mb-4 text-5xl font-normal leading-[67.2px] text-foreground">
-              Découvrez les nombreux avantages de nos services électriques.
+          <motion.div
+            className="order-1 flex flex-col justify-center lg:order-2 lg:col-span-6 lg:col-start-7 lg:pl-4"
+            initial="initial"
+            whileInView="view"
+            viewport={viewport}
+            variants={{
+              initial: {},
+              view: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+            }}
+          >
+            <motion.p
+              className="mb-3 text-sm font-semibold uppercase tracking-widest text-brand-teal"
+              variants={fadeInUp}
+              transition={fadeInUp.transition}
+            >
+              Ce qui nous distingue
+            </motion.p>
+            <motion.h2
+              className="font-heading mb-4 text-5xl font-normal leading-[67.2px] text-foreground"
+              variants={fadeInUp}
+              transition={fadeInUp.transition}
+            >
+              Des solutions solaires pensées pour le Sahel.
               <span className="ml-1 inline-block h-2 w-2 rounded-sm bg-brand-teal align-middle" aria-hidden />
-            </h2>
-            {/* text-Dark, text-xl, font-normal, font-Helvetica, leading-8 */}
-            <p className="mb-8 text-xl font-normal leading-8 text-foreground">
-              Nous proposons une gamme de services qui répondent à vos besoins
-              électriques tout en offrant de nombreux avantages. Des économies
-              d'énergie aux technologies avancées, nous sommes à vos côtés.
-            </p>
+            </motion.h2>
+            <motion.p
+              className="mb-8 text-xl font-normal leading-8 text-foreground"
+              variants={fadeInUp}
+              transition={fadeInUp.transition}
+            >
+              Sahel Électronique accompagne les petits producteurs et les
+              communautés rurales au Niger et dans la région. Énergie solaire,
+              transformation locale des récoltes et équipements durables sont au
+              cœur de notre offre.
+            </motion.p>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              {benefits.map((item) => (
-                <div key={item.title} className="flex flex-col">
+              {benefits.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  className="flex flex-col"
+                  variants={fadeInUp}
+                  transition={{ duration: 0.5, ease: easeOutExpo, delay: i * 0.06 }}
+                >
                   <div
                     className={cn(
                       "mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-foreground text-brand-teal-foreground",
@@ -138,24 +183,28 @@ export function BenefitsSection() {
                   >
                     <item.icon className="h-6 w-6" aria-hidden />
                   </div>
-                  {/* text-Mint, text-xl, font-normal, font-Benzin, leading-7 */}
                   <h3 className="font-heading mb-1 text-xl font-normal leading-7 text-brand-teal">
                     {item.title}
                   </h3>
-                  {/* text-Text-primary, text-xl, font-normal, font-Helvetica, leading-8 */}
                   <p className="text-xl font-normal leading-8 text-muted-foreground">
                     {item.description}
                   </p>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Partenaires – bandeau défilant (marquee) */}
-        <div className="mt-16 border-t border-brand-teal pt-12 md:mt-20">
+        <motion.div
+          className="mt-16 border-t border-brand-teal pt-12 md:mt-20"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={viewport}
+          transition={{ duration: 0.5, ease: easeOutExpo }}
+        >
           <p className="mb-8 text-center text-2xl font-light leading-8 text-foreground">
-            Reconnus et soutenus par des acteurs majeurs du développement
+            Reconnus et soutenus par des acteurs majeurs du développement au Sahel
           </p>
           <TooltipProvider>
             <div className="relative w-full overflow-hidden">
@@ -193,7 +242,7 @@ export function BenefitsSection() {
               </div>
             </div>
           </TooltipProvider>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
