@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import {
   FaTruck,
   FaWrench,
@@ -86,11 +87,12 @@ export function ElectricalServicesSection() {
           </p>
           <Button
             asChild
-            variant="outline"
-            size="lg"
-            className="mt-6 border-white text-white hover:bg-white/20 hover:text-white"
+            className="mt-6 rounded-full bg-teal-700 px-5 py-2.5 text-sm font-semibold uppercase text-white hover:bg-teal-600 md:px-6 md:py-3"
           >
-            <Link href="#contact">{SECTION_CTA}</Link>
+            <Link href="#contact" className="inline-flex items-center gap-2">
+              {SECTION_CTA}
+              <ArrowUpRight className="size-5 shrink-0" aria-hidden />
+            </Link>
           </Button>
         </div>
 

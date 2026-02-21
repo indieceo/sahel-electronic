@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "motion/react";
 import { MapPin, Mail } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "@/lib/site";
@@ -8,12 +7,9 @@ import { site } from "@/lib/site";
 /** Yellow bar with address and contact – scrolls away with the page */
 export function TopBar() {
   return (
-    <motion.div
+    <div
       className="w-full py-3 text-sm font-normal text-black md:py-3.5 md:text-base"
       style={{ backgroundColor: "#FDCB01" }}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
     >
       <div className="mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-2 px-8 md:justify-between md:gap-x-8">
         <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-6">
@@ -46,6 +42,6 @@ export function TopBar() {
           </a>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

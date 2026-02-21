@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { FaSolarPanel, FaBolt, FaShieldAlt } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 
@@ -37,7 +38,7 @@ function ProductSpotlight({
   const [imageError, setImageError] = useState(false);
   return (
     <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-[1fr_1fr] lg:gap-12">
-      <div className="relative min-h-[280px] overflow-hidden rounded-xl bg-muted sm:min-h-[340px]">
+      <div className="relative min-h-[320px] overflow-hidden rounded-xl bg-muted sm:min-h-[400px]">
         {!imageError ? (
           <Image
             src={product.image}
@@ -49,7 +50,7 @@ function ProductSpotlight({
             priority
           />
         ) : (
-          <div className="flex h-full min-h-[280px] w-full items-center justify-center bg-muted text-muted-foreground sm:min-h-[340px]">
+          <div className="flex h-full min-h-[320px] w-full items-center justify-center bg-muted text-muted-foreground sm:min-h-[400px]">
             <FaSolarPanel className="h-20 w-20" aria-hidden />
           </div>
         )}
@@ -119,8 +120,14 @@ export function ProductsSection() {
           <p className="mt-3 text-lg font-normal text-muted-foreground md:text-xl">
             {SECTION_SUBTITLE}
           </p>
-          <Button asChild size="lg" className="mt-6">
-            <Link href={CTA_URL}>{SECTION_CTA}</Link>
+          <Button
+            asChild
+            className="mt-6 rounded-full bg-teal-700 px-5 py-2.5 text-sm font-semibold uppercase text-white hover:bg-teal-600 md:px-6 md:py-3"
+          >
+            <Link href={CTA_URL} className="inline-flex items-center gap-2">
+              {SECTION_CTA}
+              <ArrowUpRight className="size-5 shrink-0" aria-hidden />
+            </Link>
           </Button>
         </div>
 

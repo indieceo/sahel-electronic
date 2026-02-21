@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { site } from "@/lib/site";
@@ -15,11 +14,8 @@ const NAV_LINKS = [
 /** Sticky nav row – logo, links, CTA; stays fixed when user scrolls */
 export function Navbar() {
   return (
-    <motion.nav
+    <nav
       className="sticky top-0 z-50 flex items-center justify-between gap-6 bg-teal-950 px-4 py-4 md:px-8 md:py-5"
-      initial={{ opacity: 0, y: -8 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
       aria-label="Navigation principale"
     >
       <Link
@@ -60,6 +56,6 @@ export function Navbar() {
           </Link>
         </Button>
       </div>
-    </motion.nav>
+    </nav>
   );
 }
